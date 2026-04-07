@@ -2,6 +2,7 @@ import SwiftUI
 
 struct HomeView: View {
     @Environment(AppState.self) var appState
+    @State private var showDebug = false
 
     var body: some View {
         @Bindable var appState = appState
@@ -59,6 +60,19 @@ struct HomeView: View {
             .background(Color.sfBackground.ignoresSafeArea())
             .navigationTitle("SoundFlow")
             .toolbarColorScheme(.dark, for: .navigationBar)
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button {
+                        showDebug = true
+                    } label: {
+                        Image(systemName: "wrench.and.screwdriver")
+                            .foregroundStyle(Color.sfTextSecondary)
+                    }
+                }
+            }
+            .sheet(isPresented: $showDebug) {
+                AudioDebugView()
+            }
         }
     }
 }
