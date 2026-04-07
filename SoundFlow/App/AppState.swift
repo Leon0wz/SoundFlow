@@ -7,7 +7,14 @@ final class AppState {
         get { UserDefaults.standard.bool(forKey: "hasCompletedOnboarding") }
         set { UserDefaults.standard.set(newValue, forKey: "hasCompletedOnboarding") }
     }
+    var lastPlayedSceneID: String {
+        get { UserDefaults.standard.string(forKey: "lastPlayedSceneID") ?? "rain" }
+        set { UserDefaults.standard.set(newValue, forKey: "lastPlayedSceneID") }
+    }
     var currentScene: SoundScene?
     var isPlaying = false
-    var activeLayers: [SoundLayer] = []
+    var showPaywall = false
+    var selectedCategory: SceneCategory = .sleep
+    var currentTimerMinutes: Int = 0
+    var timerRemainingSeconds: Int = 0
 }

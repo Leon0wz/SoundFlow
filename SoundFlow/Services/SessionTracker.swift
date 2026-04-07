@@ -8,8 +8,8 @@ final class SessionTracker {
         self.modelContext = modelContext
     }
 
-    func startSession(sceneName: String, layers: [SoundLayer]) -> SleepSession {
-        let session = SleepSession(sceneName: sceneName, layers: layers)
+    func startSession(sceneID: String, category: SceneCategory) -> SleepSession {
+        let session = SleepSession(sceneID: sceneID, category: category)
         modelContext.insert(session)
         return session
     }

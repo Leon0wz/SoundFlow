@@ -3,17 +3,18 @@ import SwiftData
 
 @Model
 final class SleepSession {
+    var id: UUID
     var startDate: Date
     var endDate: Date?
     var durationMinutes: Int
-    var sceneName: String
-    var layers: [SoundLayer]
+    var sceneID: String
+    var category: String
 
-    init(startDate: Date = .now, endDate: Date? = nil, durationMinutes: Int = 0, sceneName: String, layers: [SoundLayer] = []) {
-        self.startDate = startDate
-        self.endDate = endDate
-        self.durationMinutes = durationMinutes
-        self.sceneName = sceneName
-        self.layers = layers
+    init(sceneID: String, category: SceneCategory) {
+        self.id = UUID()
+        self.startDate = Date()
+        self.durationMinutes = 0
+        self.sceneID = sceneID
+        self.category = category.rawValue
     }
 }

@@ -3,15 +3,21 @@ import SwiftData
 
 @Model
 final class Preset {
+    var id: UUID
     var name: String
-    var layers: [SoundLayer]
     var createdAt: Date
-    var updatedAt: Date
+    var layersData: Data
+    var timerMinutes: Int?
 
-    init(name: String, layers: [SoundLayer], createdAt: Date = .now, updatedAt: Date = .now) {
+    init(name: String, layers: [SoundLayer], timerMinutes: Int? = nil) {
+        self.id = UUID()
         self.name = name
-        self.layers = layers
-        self.createdAt = createdAt
-        self.updatedAt = updatedAt
+        self.createdAt = Date()
+        self.timerMinutes = timerMinutes
+        self.layersData = (try? JSONEncoder().encode(layers)) ?? Data()
+    }
+
+    var layers: [SoundLayer] {
+        (try? JSONDecoder().decode([SoundLayer].self, from: layersData)) ?? []
     }
 }

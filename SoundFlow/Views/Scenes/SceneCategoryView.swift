@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct SceneCategoryView: View {
-    let category: SoundScene.SceneCategory
+    let category: SceneCategory
 
     var body: some View {
         ZStack {

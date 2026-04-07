@@ -2,18 +2,29 @@ import Foundation
 
 struct SoundScene: Identifiable, Codable {
     let id: String
-    var name: String
-    var description: String
-    var category: SceneCategory
-    var layers: [SoundLayer]
-    var iconName: String
-    var isPremium: Bool
+    let name: String
+    let subtitle: String
+    let category: SceneCategory
+    let layers: [SoundLayer]
+    let isPremium: Bool
+    let gradientColors: [String]    // Hex-Farben für Hintergrund
+    let iconName: String
 
-    enum SceneCategory: String, Codable, CaseIterable {
-        case nature
-        case urban
-        case ambient
-        case focus
-        case sleep
+    var isFree: Bool { !isPremium }
+}
+
+enum SceneCategory: String, Codable, CaseIterable {
+    case sleep = "Schlaf"
+    case focus = "Fokus"
+    case relax = "Entspannung"
+    case nature = "Natur"
+
+    var iconName: String {
+        switch self {
+        case .sleep: "moon.fill"
+        case .focus: "brain.head.profile"
+        case .relax: "leaf.fill"
+        case .nature: "tree.fill"
+        }
     }
 }
